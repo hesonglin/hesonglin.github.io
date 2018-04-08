@@ -84,8 +84,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <pre><code>最近由于工作的原因，会持续关注其他宿主语言与lua脚本语言的调用关系。下面根据自己的查阅和使用，简单说明一下delphi调用lua的
-</code></pre><p>基本思路。在网上去查询相关的问题时，会发现很多情况，我们并不能得到一个比较满意的回答，即便下载了一个示例，有时候也会发现根本<br>运行不了，其实delphi调用lua的基本思路非常简单清晰。（估计是delphi已经是昨日黄花吧）<br>    对于没有试过的人来说，最先关注的往往就是程序能否运行，该怎么用。我们一般下载一个库之后，会有四个核心的文件：<br>    工程文件（.dpr）<br>    lua.pas;<br>    lualib.pas;<br>    lua5.1.dll。<br>    其中lua.pas和lualib.pas会被示例文件进行调用，而lua.pas/lualib.pas则会调用lua5.1.dll。不需要进行额外的搭建。我们也可以自己<br>创建的控制台程序，将lua.pas;lualib.pas装载进工程(Project -&gt;add to Project),工程文件会自动生成uses的代码，将lua5.1.dll放到工程<br>目录下即可。然后借鉴示例代码，进行编码和测试。<br>    delphi调用lua的基本思路：通过加载luaxx.dll库，运用函数GetProcAddress获取lua的库函数。当我们获取到lua的库函数，就可以利用这<br>些最基础的库函数，结合delphi语言，进一步封装成可以注册delphi变量，函数，对象等类型的接口。<br>    这种库已经深入到lua的基本原理，以后会花大量的时间和博客来说明，比较好的是，早已经有人完成了这种库，难受的是，很多库都各有缺<br>点并且没有怎么维护了，常见的有:<br>lua4delphi(<a href="https://sourceforge.net/projects/lua4delphi/files/lua4delphi" target="_blank" rel="noopener">https://sourceforge.net/projects/lua4delphi/files/lua4delphi</a>)<br>LuaDelphi 2010（<a href="http://blog.spreendigital.de/wp-content/uploads/2009/10/LuaDelphi2010-v1.3.zip）和pLua。" target="_blank" rel="noopener">http://blog.spreendigital.de/wp-content/uploads/2009/10/LuaDelphi2010-v1.3.zip）和pLua。</a><br>我这里使用的是LuaDelphi2010-v1.3，使用的环境是delphi7。<br>    直接使用该库，当时遇到了问题，需要简单修改一下，修改如下：<br>（1）、将luaLib.pas的574行，LoadLibrary(PWideChar( (GetLuaLibFileName() ) ))的PWideChar修改为PChar。</p>
+        <p>最近由于工作的原因，会持续关注其他宿主语言与lua脚本语言的调用关系。下面根据自己的查阅和使用，简单说明一下delphi调用lua的基本思路。在网上去查询相关的问题时，会发现很多情况，我们并不能得到一个比较满意的回答，即便下载了一个示例，有时候也会发现根本运行不了，其实delphi调用lua的基本思路非常简单清晰。（估计是delphi已经是昨日黄花吧）<br>    对于没有试过的人来说，最先关注的往往就是程序能否运行，该怎么用。我们一般下载一个库之后，会有四个核心的文件：<br>    工程文件（.dpr）<br>    lua.pas;<br>    lualib.pas;<br>    lua5.1.dll。<br>    其中lua.pas和lualib.pas会被示例文件进行调用，而lua.pas/lualib.pas则会调用lua5.1.dll。不需要进行额外的搭建。我们也可以自己<br>创建的控制台程序，将lua.pas;lualib.pas装载进工程(Project -&gt;add to Project),工程文件会自动生成uses的代码，将lua5.1.dll放到工程<br>目录下即可。然后借鉴示例代码，进行编码和测试。<br>    delphi调用lua的基本思路：通过加载luaxx.dll库，运用函数GetProcAddress获取lua的库函数。当我们获取到lua的库函数，就可以利用这<br>些最基础的库函数，结合delphi语言，进一步封装成可以注册delphi变量，函数，对象等类型的接口。<br>    这种库已经深入到lua的基本原理，以后会花大量的时间和博客来说明，比较好的是，早已经有人完成了这种库，难受的是，很多库都各有缺<br>点并且没有怎么维护了，常见的有:<br>lua4delphi(<a href="https://sourceforge.net/projects/lua4delphi/files/lua4delphi" target="_blank" rel="noopener">https://sourceforge.net/projects/lua4delphi/files/lua4delphi</a>)<br>LuaDelphi 2010（<a href="http://blog.spreendigital.de/wp-content/uploads/2009/10/LuaDelphi2010-v1.3.zip）" target="_blank" rel="noopener">http://blog.spreendigital.de/wp-content/uploads/2009/10/LuaDelphi2010-v1.3.zip）</a><br>pLua（<a href="http://lua-users.org/wiki/LuaInFreePascal）" target="_blank" rel="noopener">http://lua-users.org/wiki/LuaInFreePascal）</a><br>我这里使用的是LuaDelphi2010-v1.3，使用的环境是delphi7。<br>    直接使用该库，当时遇到了问题，需要简单修改一下，修改如下：<br>（1）、将luaLib.pas的574行，LoadLibrary(PWideChar( (GetLuaLibFileName() ) ))的PWideChar修改为PChar。</p>
 <p>（2）、将luaTest.dpr 里面var下的变量名称修改一下，相应的，该文件对应的变量名都需要修改。  MyLua1: TLua;Lua1: TLua;SomeObject1: TSomeClass;</p>
 <p>代码的示例非常简单，注释也非常清晰，这里不做说明。</p>
 <p>(<em> Example 1 - Simple Lua Script Execution </em>)</p>
@@ -256,7 +255,7 @@ readln;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/08/delphi调用lua的基本思路/" data-id="cjfqx0qiv0001b0oh6ov9ok84" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/08/delphi调用lua的基本思路/" data-id="cjfqxnzvt0001vkohmwqt1v3d" class="article-share-link">Share</a>
       
       
     </footer>
@@ -293,7 +292,7 @@ readln;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/08/2018-4-8-test1/" data-id="cjfqx0qio0000b0oh28nurkf3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/08/2018-4-8-test1/" data-id="cjfqxnzvo0000vkohpr5itgsm" class="article-share-link">Share</a>
       
       
     </footer>
