@@ -7,17 +7,17 @@
   
   <title>delphi调用lua的基本思路 | 疯狂的木头</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最近由于工作的原因，会持续关注其他宿主语言与lua脚本语言的调用关系。下面根据自己的查阅和使用，简单说明一下delphi调用lua的基本思路。 在网上去查询相关的问题时，会发现很多情况，我们并不能得到一个比较满意的回答，即便下载了一个示例，有时候也会发现根本运行不了，其实 delphi调用lua的基本思路非常简单清晰。（估计是delphi已经是昨日黄花吧） 对于没有试过的人来说，最先关注的往往就是">
+  <meta name="description" content="最近由于工作的原因，会持续关注其他宿主语言与lua脚本语言的调用关系。下面根据自己的查阅和使用，简单说明一下delphi调用lua的 基本思路。在网上去查询相关的问题时，会发现很多情况，我们并不能得到一个比较满意的回答，即便下载了一个示例，有时候也会发现根本运行不了，其实delphi调用lua的基本思路非常简单清晰。（估计是delphi已经是昨日黄花吧）    对于没有试过的人来说，最先关注的往往">
 <meta property="og:type" content="article">
 <meta property="og:title" content="delphi调用lua的基本思路">
 <meta property="og:url" content="http://yoursite.com/2018/04/08/delphi调用lua的基本思路/index.html">
 <meta property="og:site_name" content="疯狂的木头">
-<meta property="og:description" content="最近由于工作的原因，会持续关注其他宿主语言与lua脚本语言的调用关系。下面根据自己的查阅和使用，简单说明一下delphi调用lua的基本思路。 在网上去查询相关的问题时，会发现很多情况，我们并不能得到一个比较满意的回答，即便下载了一个示例，有时候也会发现根本运行不了，其实 delphi调用lua的基本思路非常简单清晰。（估计是delphi已经是昨日黄花吧） 对于没有试过的人来说，最先关注的往往就是">
+<meta property="og:description" content="最近由于工作的原因，会持续关注其他宿主语言与lua脚本语言的调用关系。下面根据自己的查阅和使用，简单说明一下delphi调用lua的 基本思路。在网上去查询相关的问题时，会发现很多情况，我们并不能得到一个比较满意的回答，即便下载了一个示例，有时候也会发现根本运行不了，其实delphi调用lua的基本思路非常简单清晰。（估计是delphi已经是昨日黄花吧）    对于没有试过的人来说，最先关注的往往">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-08T14:26:40.098Z">
+<meta property="og:updated_time" content="2018-04-08T14:35:40.852Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="delphi调用lua的基本思路">
-<meta name="twitter:description" content="最近由于工作的原因，会持续关注其他宿主语言与lua脚本语言的调用关系。下面根据自己的查阅和使用，简单说明一下delphi调用lua的基本思路。 在网上去查询相关的问题时，会发现很多情况，我们并不能得到一个比较满意的回答，即便下载了一个示例，有时候也会发现根本运行不了，其实 delphi调用lua的基本思路非常简单清晰。（估计是delphi已经是昨日黄花吧） 对于没有试过的人来说，最先关注的往往就是">
+<meta name="twitter:description" content="最近由于工作的原因，会持续关注其他宿主语言与lua脚本语言的调用关系。下面根据自己的查阅和使用，简单说明一下delphi调用lua的 基本思路。在网上去查询相关的问题时，会发现很多情况，我们并不能得到一个比较满意的回答，即便下载了一个示例，有时候也会发现根本运行不了，其实delphi调用lua的基本思路非常简单清晰。（估计是delphi已经是昨日黄花吧）    对于没有试过的人来说，最先关注的往往">
   
     <link rel="alternate" href="/atom.xml" title="疯狂的木头" type="application/atom+xml">
   
@@ -86,16 +86,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <pre><code>最近由于工作的原因，会持续关注其他宿主语言与lua脚本语言的调用关系。下面根据自己的查阅和使用，简单说明一下delphi调用lua的基本思路。
-</code></pre><p>在网上去查询相关的问题时，会发现很多情况，我们并不能得到一个比较满意的回答，即便下载了一个示例，有时候也会发现根本运行不了，其实</p>
-<p>delphi调用lua的基本思路非常简单清晰。（估计是delphi已经是昨日黄花吧）</p>
-<pre><code>对于没有试过的人来说，最先关注的往往就是程序能否运行，该怎么用。我们一般下载一个库之后，会有四个核心的文件：示例文件;lua.pas;lualib.pas;lua5.1.dll。其中lua.pas和lualib.pas会被示例文件进行调用，而lua.pas/lualib.pas则会调用lua5.1.dll。不需要进行额外的搭建。
-</code></pre><p>我们也可以自己创建的控制台程序，将lua.pas;lualib.pas装载进工程(Project -&gt;add to Project),工程文件会自动生成uses的代码，将lua5.1.dll放到工程<br>目录下即可。然后借鉴示例代码，进行编码和测试。</p>
-<pre><code>delphi调用lua的基本思路：通过加载luaxx.dll库，运用函数GetProcAddress获取lua的库函数。当我们获取到lua的库函数，就可以利用这些最基础的
-</code></pre><p>库函数，结合delphi语言，进一步封装成可以注册delphi变量，函数，对象等类型的接口。</p>
-<pre><code>这种库已经深入到lua的基本原理，以后会花大量的时间和博客来说明，比较好的是，早已经有人完成了这种库，难受的是，很多库都各有缺点并且没有
-</code></pre><p>怎么维护了，常见的有lua4delphi(<a href="https://sourceforge.net/projects/lua4delphi/files/lua4delphi/)以及LuaDelphi" target="_blank" rel="noopener">https://sourceforge.net/projects/lua4delphi/files/lua4delphi/)以及LuaDelphi</a> 2010（<a href="http://blog.spreendigital.de/wp-content/uploads/2009/10/LuaDelphi2010-v1.3.zip）和pLua。我这里使用的是LuaDelphi2010-v1.3，使用的环境是" target="_blank" rel="noopener">http://blog.spreendigital.de/wp-content/uploads/2009/10/LuaDelphi2010-v1.3.zip）和pLua。我这里使用的是LuaDelphi2010-v1.3，使用的环境是</a><br>delphi7。<br>    直接使用该库，当时遇到了问题，需要简单修改一下，修改如下：</p>
-<p>（1）、将luaLib.pas的574行，LoadLibrary(PWideChar( (GetLuaLibFileName() ) ))的PWideChar修改为PChar。</p>
+        <pre><code>最近由于工作的原因，会持续关注其他宿主语言与lua脚本语言的调用关系。下面根据自己的查阅和使用，简单说明一下delphi调用lua的
+</code></pre><p>基本思路。在网上去查询相关的问题时，会发现很多情况，我们并不能得到一个比较满意的回答，即便下载了一个示例，有时候也会发现根本<br>运行不了，其实delphi调用lua的基本思路非常简单清晰。（估计是delphi已经是昨日黄花吧）<br>    对于没有试过的人来说，最先关注的往往就是程序能否运行，该怎么用。我们一般下载一个库之后，会有四个核心的文件：<br>    工程文件（.dpr）<br>    lua.pas;<br>    lualib.pas;<br>    lua5.1.dll。<br>    其中lua.pas和lualib.pas会被示例文件进行调用，而lua.pas/lualib.pas则会调用lua5.1.dll。不需要进行额外的搭建。我们也可以自己<br>创建的控制台程序，将lua.pas;lualib.pas装载进工程(Project -&gt;add to Project),工程文件会自动生成uses的代码，将lua5.1.dll放到工程<br>目录下即可。然后借鉴示例代码，进行编码和测试。<br>    delphi调用lua的基本思路：通过加载luaxx.dll库，运用函数GetProcAddress获取lua的库函数。当我们获取到lua的库函数，就可以利用这<br>些最基础的库函数，结合delphi语言，进一步封装成可以注册delphi变量，函数，对象等类型的接口。<br>    这种库已经深入到lua的基本原理，以后会花大量的时间和博客来说明，比较好的是，早已经有人完成了这种库，难受的是，很多库都各有缺<br>点并且没有怎么维护了，常见的有:<br>lua4delphi(<a href="https://sourceforge.net/projects/lua4delphi/files/lua4delphi" target="_blank" rel="noopener">https://sourceforge.net/projects/lua4delphi/files/lua4delphi</a>)<br>LuaDelphi 2010（<a href="http://blog.spreendigital.de/wp-content/uploads/2009/10/LuaDelphi2010-v1.3.zip）和pLua。" target="_blank" rel="noopener">http://blog.spreendigital.de/wp-content/uploads/2009/10/LuaDelphi2010-v1.3.zip）和pLua。</a><br>我这里使用的是LuaDelphi2010-v1.3，使用的环境是delphi7。<br>    直接使用该库，当时遇到了问题，需要简单修改一下，修改如下：<br>（1）、将luaLib.pas的574行，LoadLibrary(PWideChar( (GetLuaLibFileName() ) ))的PWideChar修改为PChar。</p>
 <p>（2）、将luaTest.dpr 里面var下的变量名称修改一下，相应的，该文件对应的变量名都需要修改。  MyLua1: TLua;Lua1: TLua;SomeObject1: TSomeClass;</p>
 <p>代码的示例非常简单，注释也非常清晰，这里不做说明。</p>
 <p>(<em> Example 1 - Simple Lua Script Execution </em>)</p>
@@ -137,7 +129,9 @@ SomeObject1.Free;
 MyLua1.Free;
 
 readln;
-</code></pre><p>下面主要说明一下库里面实现装载lua5.1.dll的基本流程。<br>一般来说，会在主程序运行起来之前，完成装载，例如我现在接触的公司项目，将装载lua5.1.dll的过程放在了initialization下。<br>示例中的装载函数在lualib.pas中：function LoadLuaLib(newLuaLibFileName: String): Integer;<br>该函数会先初始化即将赋值函数指针的变量：FreeLuaLib();<br>完成文件名和文件存在的安全检查后，调用函数LoadLibrary(PChar( (GetLuaLibFileName() ) ))<br>完成装载之后，调用函数GetProcAddress( fHandle, PAnsiChar( AnsiString(methodName) ) )实现对lua5.1.dll库函数的获取<br>（GetProcAddr是GetProcAddress的一个封装接口，GetProcAddr内部即为GetProcAddress）<br>  lua_newstate       := GetProcAddr( fLibHandle, ‘lua_newstate’ );</p>
+下面主要说明一下库里面实现装载lua5.1.dll的基本流程。
+一般来说，会在主程序运行起来之前，完成装载，例如我现在接触的公司项目，将装载lua5.1.dll的过程放在了initialization下。
+</code></pre><p>示例中的装载函数在lualib.pas中：function LoadLuaLib(newLuaLibFileName: String): Integer;<br>该函数会先初始化即将赋值函数指针的变量：FreeLuaLib();<br>完成文件名和文件存在的安全检查后，调用函数LoadLibrary(PChar( (GetLuaLibFileName() ) ))<br>完成装载之后，调用函数GetProcAddress( fHandle, PAnsiChar( AnsiString(methodName) ) )实现对lua5.1.dll库函数的获取<br>（GetProcAddr是GetProcAddress的一个封装接口，GetProcAddr内部即为GetProcAddress）<br>  lua_newstate       := GetProcAddr( fLibHandle, ‘lua_newstate’ );</p>
 <p>  lua_close          := GetProcAddr( fLibHandle, ‘lua_close’ );</p>
 <p>  lua_newthread      := GetProcAddr( fLibHandle, ‘lua_newthread’ );</p>
 <p>  lua_atpanic        := GetProcAddr( fLibHandle, ‘lua_atpanic’ );</p>
@@ -264,7 +258,7 @@ readln;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/08/delphi调用lua的基本思路/" data-id="cjfqwj7tn0000wsohzkhziuw5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/08/delphi调用lua的基本思路/" data-id="cjfqwuldp0001tooh8rk9y4uc" class="article-share-link">Share</a>
       
       
     </footer>
