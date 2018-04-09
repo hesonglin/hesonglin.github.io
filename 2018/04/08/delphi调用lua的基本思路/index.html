@@ -3,8 +3,6 @@
 <head>
   <meta charset="utf-8">
   
-
-  
   <title>delphi调用lua的基本思路 | 疯狂的木头</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="最近由于工作的原因，会持续关注其他宿主语言与lua脚本语言的调用关系。下面根据自己的查阅和使用，简单说明一下delphi调用lua的基本思路。在网上去查询相关的问题时，会发现很多情况，我们并不能得到一个比较满意的回答，即便下载了一个示例，有时候也会发现根本运行不了，其实delphi调用lua的基本思路非常简单清晰。（估计是delphi已经是昨日黄花吧）    对于没有试过的人来说，最先关注的往往就">
@@ -19,59 +17,199 @@
 <meta name="twitter:title" content="delphi调用lua的基本思路">
 <meta name="twitter:description" content="最近由于工作的原因，会持续关注其他宿主语言与lua脚本语言的调用关系。下面根据自己的查阅和使用，简单说明一下delphi调用lua的基本思路。在网上去查询相关的问题时，会发现很多情况，我们并不能得到一个比较满意的回答，即便下载了一个示例，有时候也会发现根本运行不了，其实delphi调用lua的基本思路非常简单清晰。（估计是delphi已经是昨日黄花吧）    对于没有试过的人来说，最先关注的往往就">
   
-    <link rel="alternate" href="/atom.xml" title="疯狂的木头" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="疯狂的木头" type="application/atom+xml">
   
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
 </head>
-
 <body>
   <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">疯狂的木头</a>
-      </h1>
-      
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/me.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/">何松林</a></h1>
+        </hgroup>
+
+        
+        
+        <form><input type="text" class="search" placeholder=" Search..."></form>
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <li id="Email"><a class="Email" target="_blank" href="/598515834@qq.com" title="Email"></a></li>
+                            
+                                <li id="新浪微博"><a class="新浪微博" target="_blank" href="/weibo" title="新浪微博"></a></li>
+                            
+                                <li id="GitHub"><a class="GitHub" target="_blank" href="#" title="GitHub"></a></li>
+                            
+                                <li id="微信"><a class="微信" target="_blank" href="/Wechat" title="微信"></a></li>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://androidwolf.github.io/">Me</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/androidwolf">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/bug_moving">CSND</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">爱谈天跨地的秀秀</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">何松林</a></h1>
       </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img lazy-src="/img/me.jpg" class="js-avatar">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">何松林</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <li id="Email"><a class="Email" target="_blank" href="/598515834@qq.com" title="Email"></a></li>
+                            
+                                <li id="新浪微博"><a class="新浪微博" target="_blank" href="/weibo" title="新浪微博"></a></li>
+                            
+                                <li id="GitHub"><a class="GitHub" target="_blank" href="#" title="GitHub"></a></li>
+                            
+                                <li id="微信"><a class="微信" target="_blank" href="/Wechat" title="微信"></a></li>
+                            
+                        </ul>
+            </nav>
+        </header>                
     </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="blog-delphi调用lua的基本思路" class="article article-type-blog" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/08/delphi调用lua的基本思路/" class="article-date">
-  <time datetime="2018-04-08T13:21:24.000Z" itemprop="datePublished">2018-04-08</time>
+</nav>
+      <div class="body-wrap"><article id="blog-delphi调用lua的基本思路" class="article article-type-blog" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/04/08/delphi调用lua的基本思路/" class="article-date">
+      <time datetime="2018-04-08T13:21:24.000Z" itemprop="datePublished">2018-04-08</time>
 </a>
-    
-  </div>
+    </div>
+  
   <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
       <header class="article-header">
@@ -83,9 +221,18 @@
   
 
       </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
     
     <div class="article-entry" itemprop="articleBody">
       
+          
         <p>最近由于工作的原因，会持续关注其他宿主语言与lua脚本语言的调用关系。下面根据自己的查阅和使用，简单说明一下delphi调用lua的基本思路。在网上去查询相关的问题时，会发现很多情况，我们并不能得到一个比较满意的回答，即便下载了一个示例，有时候也会发现根本运行不了，其实delphi调用lua的基本思路非常简单清晰。（估计是delphi已经是昨日黄花吧）<br>    对于没有试过的人来说，最先关注的往往就是程序能否运行，该怎么用。我们一般下载一个库之后，会有四个核心的文件：<br>    工程文件（.dpr）<br>    lua.pas;<br>    lualib.pas;<br>    lua5.1.dll。<br>    其中lua.pas和lualib.pas会被示例文件进行调用，而lua.pas/lualib.pas则会调用lua5.1.dll。不需要进行额外的搭建。我们也可以自己<br>创建的控制台程序，将lua.pas;lualib.pas装载进工程(Project -&gt;add to Project),工程文件会自动生成uses的代码，将lua5.1.dll放到工程<br>目录下即可。然后借鉴示例代码，进行编码和测试。<br>    delphi调用lua的基本思路：通过加载luaxx.dll库，运用函数GetProcAddress获取lua的库函数。当我们获取到lua的库函数，就可以利用这<br>些最基础的库函数，结合delphi语言，进一步封装成可以注册delphi变量，函数，对象等类型的接口。<br>    这种库已经深入到lua的基本原理，以后会花大量的时间和博客来说明，比较好的是，早已经有人完成了这种库，难受的是，很多库都各有缺<br>点并且没有怎么维护了，常见的有:<br>lua4delphi(<a href="https://sourceforge.net/projects/lua4delphi/files/lua4delphi" target="_blank" rel="noopener">https://sourceforge.net/projects/lua4delphi/files/lua4delphi</a>)<br>LuaDelphi 2010（<a href="http://blog.spreendigital.de/wp-content/uploads/2009/10/LuaDelphi2010-v1.3.zip）" target="_blank" rel="noopener">http://blog.spreendigital.de/wp-content/uploads/2009/10/LuaDelphi2010-v1.3.zip）</a><br>pLua（<a href="http://lua-users.org/wiki/LuaInFreePascal）" target="_blank" rel="noopener">http://lua-users.org/wiki/LuaInFreePascal）</a><br>我这里使用的是LuaDelphi2010-v1.3，使用的环境是delphi7。<br>    直接使用该库，当时遇到了问题，需要简单修改一下，修改如下：<br>（1）、将luaLib.pas的574行，LoadLibrary(PWideChar( (GetLuaLibFileName() ) ))的PWideChar修改为PChar。</p>
 <p>（2）、将luaTest.dpr 里面var下的变量名称修改一下，相应的，该文件对应的变量名都需要修改。  MyLua1: TLua;Lua1: TLua;SomeObject1: TSomeClass;</p>
 <p>代码的示例非常简单，注释也非常清晰，这里不做说明。</p>
@@ -256,101 +403,252 @@ readln;
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/08/delphi调用lua的基本思路/" data-id="cjfqxnzvt0001vkohmwqt1v3d" class="article-share-link">Share</a>
-      
-      
-    </footer>
+    
   </div>
   
     
-<nav id="article-nav">
-  
-  
-    <a href="/2018/04/08/2018-4-8-test1/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">2018-4-8</div>
-    </a>
-  
-</nav>
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/04/08/delphi调用lua的基本思路/">delphi调用lua的基本思路</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 何松林 的个人博客">何松林</a></p>
+        <p><span>发布时间:</span>2018年04月08日 - 21时21分</p>
+        <p><span>最后更新:</span>2018年04月08日 - 22时58分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/04/08/delphi调用lua的基本思路/" title="delphi调用lua的基本思路">http://yoursite.com/2018/04/08/delphi调用lua的基本思路/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/04/08/delphi调用lua的基本思路/　　作者: 何松林" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2018/04/08/2018-4-8-test1/">
+                    2018-4-8
+                </a>
+            </div>
+        
+    </nav>
 
   
 </article>
 
-</section>
-        
-          <aside id="sidebar">
-  
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
     
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
 
-  
-    
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+<div class="share">
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+    <a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+    <a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
     </div>
-  </div>
+    <script>
+        window._bd_share_config={
+            "common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='https://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+</div>
 
 
-  
+
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2018/04/08/delphi调用lua的基本思路/">delphi调用lua的基本思路</a>
-          </li>
-        
-          <li>
-            <a href="/2018/04/08/2018-4-8-test1/">2018-4-8</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
-  
-</aside>
+
+
+
+    <div class="scroll" id="post-nav-button">
         
-      </div>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2018/04/08/2018-4-8-test1/" title="下一篇: 2018-4-8">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/04/08/delphi调用lua的基本思路/">delphi调用lua的基本思路</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/08/2018-4-8-test1/">2018-4-8</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+        <script>
+            var yiliaConfig = {
+            fancybox: true,
+            mathjax: true,
+            animate: true,
+            isHome: false,
+            isPost: true,
+            isArchive: false,
+            isTag: false,
+            isCategory: false,
+            open_in_new: false
+            }
+        </script>
+        
+</div>
       <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2018 何松林<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2018 何松林
+            </div>
+            <div class="footer-right">
+                <a href="https://androidwolf.github.io/" target="_blank" title="叶显秀的Github">yxx@版权所有，翻版绝对不究</a>
+            </div>
+        </div>
+        <div class="visit">
+            <span id="busuanzi_container_site_pv" style='display:none'>
+                <span id="site-visit" >本站到访数: 
+                    <span id="busuanzi_value_site_uv"></span>
+                </span>
+            </span>
+            <span id="busuanzi_container_page_pv" style='display:none'>
+                <span id="page-visit">, 本页阅读量: 
+                    <span id="busuanzi_value_page_pv"></span>
+                </span>
+            </span>
+        </div>
     </div>
-  </div>
 </footer>
     </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
 
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
   </div>
 </body>
 </html>
