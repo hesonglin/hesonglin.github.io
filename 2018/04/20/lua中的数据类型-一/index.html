@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>2018-4-8 | 疯狂的木头</title>
+  <title>lua中的数据类型(一) | 疯狂的木头</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="思维的自由体现在什么地方？（辩证思维）在所有肯定里面找出否定面，在所有否定里面找出肯定面；（逻辑思维）知之为知之，不知为不知；（列合思维）找到基素，排列组合。世界这么大，容得下你区区80年的任性！">
+  <meta name="description" content="LUA中的数据类型（一） 1、Lua中的数据类型主要有以下几类：数字，布尔类型，字符串，关联表，nil，userdata，lua函数，C函数，THREAD类型。http://www.runoob.com/lua/lua-data-types.htmlNumber:表示双精度类型的实浮点数Boolean:包含两个值：false和trueString:字符串由一对双引号或者单引号来表示Table:lu">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2018-4-8">
-<meta property="og:url" content="http://yoursite.com/2018/04/08/2018-4-8-test1/index.html">
+<meta property="og:title" content="lua中的数据类型(一)">
+<meta property="og:url" content="http://yoursite.com/2018/04/20/lua中的数据类型-一/index.html">
 <meta property="og:site_name" content="疯狂的木头">
-<meta property="og:description" content="思维的自由体现在什么地方？（辩证思维）在所有肯定里面找出否定面，在所有否定里面找出肯定面；（逻辑思维）知之为知之，不知为不知；（列合思维）找到基素，排列组合。世界这么大，容得下你区区80年的任性！">
+<meta property="og:description" content="LUA中的数据类型（一） 1、Lua中的数据类型主要有以下几类：数字，布尔类型，字符串，关联表，nil，userdata，lua函数，C函数，THREAD类型。http://www.runoob.com/lua/lua-data-types.htmlNumber:表示双精度类型的实浮点数Boolean:包含两个值：false和trueString:字符串由一对双引号或者单引号来表示Table:lu">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-08T06:25:31.351Z">
+<meta property="og:updated_time" content="2018-04-20T11:48:02.667Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2018-4-8">
-<meta name="twitter:description" content="思维的自由体现在什么地方？（辩证思维）在所有肯定里面找出否定面，在所有否定里面找出肯定面；（逻辑思维）知之为知之，不知为不知；（列合思维）找到基素，排列组合。世界这么大，容得下你区区80年的任性！">
+<meta name="twitter:title" content="lua中的数据类型(一)">
+<meta name="twitter:description" content="LUA中的数据类型（一） 1、Lua中的数据类型主要有以下几类：数字，布尔类型，字符串，关联表，nil，userdata，lua函数，C函数，THREAD类型。http://www.runoob.com/lua/lua-data-types.htmlNumber:表示双精度类型的实浮点数Boolean:包含两个值：false和trueString:字符串由一对双引号或者单引号来表示Table:lu">
   
     <link rel="alternative" href="/atom.xml" title="疯狂的木头" type="application/atom+xml">
   
@@ -199,11 +199,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-2018-4-8-test1" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-lua中的数据类型-一" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/04/08/2018-4-8-test1/" class="article-date">
-      <time datetime="2018-04-08T04:32:59.000Z" itemprop="datePublished">2018-04-08</time>
+      <a href="/2018/04/20/lua中的数据类型-一/" class="article-date">
+      <time datetime="2018-04-20T11:41:17.000Z" itemprop="datePublished">2018-04-20</time>
 </a>
     </div>
   
@@ -216,7 +216,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      2018-4-8
+      lua中的数据类型(一)
     </h1>
   
 
@@ -233,7 +233,22 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>思维的自由体现在什么地方？<br>（辩证思维）在所有肯定里面找出否定面，在所有否定里面找出肯定面；<br>（逻辑思维）知之为知之，不知为不知；<br>（列合思维）找到基素，排列组合。<br>世界这么大，容得下你区区80年的任性！</p>
+        <pre><code>LUA中的数据类型（一）
+</code></pre><p>1、Lua中的数据类型主要有以下几类：<br>数字，布尔类型，字符串，关联表，nil，userdata，lua函数，C函数，THREAD类型。<br><a href="http://www.runoob.com/lua/lua-data-types.html" target="_blank" rel="noopener">http://www.runoob.com/lua/lua-data-types.html</a><br>Number:表示双精度类型的实浮点数<br>Boolean:包含两个值：false和true<br>String:字符串由一对双引号或者单引号来表示<br>Table:lua的表示其实是一个关联数组，数组的索引可以是数字或者是字符串。在lua里，table的创建是通过“构造表达式”来完成的，最简单的构造表达式是{}，用来创建一个空表。<br>Nil:只有值nil属于该类，表示一个无效值（在条件表达式中相当于false）<br>Userdata:表示任意存储在变量中的C数据结构<br>Function:由C或者lua编写的函数<br>Thread：表示执行的独立线路，用于执行协调程序</p>
+<p>2、Lua通用数据结构体<br>在lua的源码当中，创建了一个通用的数据结构来接受数据进行计算和操作，在未确定具体的数据类型时，即以此结构为参数进行操作。<br>该结构体定义在lobject.h中：<br>typedef struct lua_TValue {<br>  TValuefields;<br>} TValue;<br>其中TValuefields通过宏来定义：#define TValuefields    Value value; int tt。<br>其中tt表示lua的数据类型(lua.h)：</p>
+<p> #define LUA_TNONE        (-1)</p>
+<p> #define LUA_TNIL        0</p>
+<p> #define LUA_TBOOLEAN        1</p>
+<p> #define LUA_TLIGHTUSERDATA    2</p>
+<p> #define LUA_TNUMBER        3</p>
+<p> #define LUA_TSTRING        4</p>
+<p> #define LUA_TTABLE        5</p>
+<p> #define LUA_TFUNCTION        6</p>
+<p> #define LUA_TUSERDATA        7</p>
+<p> #define LUA_TTHREAD        8<br>其中value通过联合体的形式进行定义，这样做的最大好处就是在表示不同数据的同时，还做到了尽可能的节省空间<br>typedef union {<br>  GCObject <em>gc;<br>  void </em>p;<br>  lua_Number n;<br>  int b;<br>} Value;(lobject.h)<br>其中void <em>p对应着LUA_TLIGHTUSERDATA和LUA_TUSERDATA<br>Lua_Number对应着LUA_TNUMBER(根据宏定义，lua_number其本质是double)<br>Int b 对应着booleanl类型。<br>GCObject </em>gc 对应着需要进行垃圾回收处理的数据类型。其中GCObject是一个联合体，将所有需要进行垃圾回收的数据类型囊括起来，其内容如下(lstate.h):<br>union GCObject {<br>  GCheader gch;<br>  union TString ts;<br>  union Udata u;<br>  union Closure cl;<br>  struct Table h;<br>  struct Proto p;<br>  struct UpVal uv;<br>  struct lua_State th;  /<em> thread </em>/<br>};<br>其中LUA_TSTRING 对应着TString，LUA_TTABLE 对应着Tabel，LUA_TFUNCTION 对应着Closure，LUA_TTHREAD 对应着lua_State.<br>其中GCheader其本质是：GCObject *next; lu_byte tt; lu_byte marked。可以看出，其本身是一个链表，将需要垃圾回收的数据加进链表中。Lua虚拟机每隔一定的时间，会检测，遍历一遍，将没有被引用的对象进行回收。</p>
+<p>在具体的代码中，TValue用于统一地表示数据，而一旦知道了具体的数据类型，就需要使用具体类型。因此，代码中有很多涉及TValue与具体类型之间的转化代码。例如(lobject.h)：</p>
+<p> #define setnilvalue(obj) ((obj)-&gt;tt=LUA_TNIL)</p>
+<p> #define setnvalue(obj,x) \<br>  { TValue *i_o=(obj); i_o-&gt;value.n=(x); i_o-&gt;tt=LUA_TNUMBER; }</p>
 
       
     </div>
@@ -242,13 +257,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/04/08/2018-4-8-test1/">2018-4-8</a></p>
+        <p><span>本文标题:</span><a href="/2018/04/20/lua中的数据类型-一/">lua中的数据类型(一)</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 何松林 的个人博客">何松林</a></p>
-        <p><span>发布时间:</span>2018年04月08日 - 12时32分</p>
-        <p><span>最后更新:</span>2018年04月08日 - 14时25分</p>
+        <p><span>发布时间:</span>2018年04月20日 - 19时41分</p>
+        <p><span>最后更新:</span>2018年04月20日 - 19时48分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/04/08/2018-4-8-test1/" title="2018-4-8">http://yoursite.com/2018/04/08/2018-4-8-test1/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/04/08/2018-4-8-test1/　　作者: 何松林" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/04/20/lua中的数据类型-一/" title="lua中的数据类型(一)">http://yoursite.com/2018/04/20/lua中的数据类型-一/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/04/20/lua中的数据类型-一/　　作者: 何松林" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -261,12 +276,12 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
+        
+            <div id="article-nav-older" class="article-nav-title">
                 <a href="/2018/04/08/delphi调用lua的基本思路/">
                     delphi调用lua的基本思路
                 </a>
             </div>
-        
         
     </nav>
 
@@ -343,15 +358,15 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/04/08/delphi调用lua的基本思路/" title="上一篇: delphi调用lua的基本思路">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2018/04/08/delphi调用lua的基本思路/" title="下一篇: delphi调用lua的基本思路">
+                <i class="fa fa-angle-right"></i>
+            </a>
         
     </div>
 
