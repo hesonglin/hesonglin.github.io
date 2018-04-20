@@ -5,17 +5,17 @@
   
   <title>lua中的数据类型(一) | 疯狂的木头</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="LUA中的数据类型（一） 1、Lua中的数据类型主要有以下几类：数字，布尔类型，字符串，关联表，nil，userdata，lua函数，C函数，THREAD类型。http://www.runoob.com/lua/lua-data-types.htmlNumber:表示双精度类型的实浮点数Boolean:包含两个值：false和trueString:字符串由一对双引号或者单引号来表示Table:lu">
+  <meta name="description" content="1、Lua中的数据类型主要有以下几类：数字，布尔类型，字符串，关联表，nil，userdata，lua函数，C函数，THREAD类型。http://www.runoob.com/lua/lua-data-types.htmlNumber:表示双精度类型的实浮点数Boolean:包含两个值：false和trueString:字符串由一对双引号或者单引号来表示Table:lua的表示其实是一个关联数组">
 <meta property="og:type" content="article">
 <meta property="og:title" content="lua中的数据类型(一)">
 <meta property="og:url" content="http://yoursite.com/2018/04/20/lua中的数据类型-一/index.html">
 <meta property="og:site_name" content="疯狂的木头">
-<meta property="og:description" content="LUA中的数据类型（一） 1、Lua中的数据类型主要有以下几类：数字，布尔类型，字符串，关联表，nil，userdata，lua函数，C函数，THREAD类型。http://www.runoob.com/lua/lua-data-types.htmlNumber:表示双精度类型的实浮点数Boolean:包含两个值：false和trueString:字符串由一对双引号或者单引号来表示Table:lu">
+<meta property="og:description" content="1、Lua中的数据类型主要有以下几类：数字，布尔类型，字符串，关联表，nil，userdata，lua函数，C函数，THREAD类型。http://www.runoob.com/lua/lua-data-types.htmlNumber:表示双精度类型的实浮点数Boolean:包含两个值：false和trueString:字符串由一对双引号或者单引号来表示Table:lua的表示其实是一个关联数组">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-20T11:48:02.667Z">
+<meta property="og:updated_time" content="2018-04-20T11:50:25.380Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="lua中的数据类型(一)">
-<meta name="twitter:description" content="LUA中的数据类型（一） 1、Lua中的数据类型主要有以下几类：数字，布尔类型，字符串，关联表，nil，userdata，lua函数，C函数，THREAD类型。http://www.runoob.com/lua/lua-data-types.htmlNumber:表示双精度类型的实浮点数Boolean:包含两个值：false和trueString:字符串由一对双引号或者单引号来表示Table:lu">
+<meta name="twitter:description" content="1、Lua中的数据类型主要有以下几类：数字，布尔类型，字符串，关联表，nil，userdata，lua函数，C函数，THREAD类型。http://www.runoob.com/lua/lua-data-types.htmlNumber:表示双精度类型的实浮点数Boolean:包含两个值：false和trueString:字符串由一对双引号或者单引号来表示Table:lua的表示其实是一个关联数组">
   
     <link rel="alternative" href="/atom.xml" title="疯狂的木头" type="application/atom+xml">
   
@@ -233,8 +233,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <pre><code>LUA中的数据类型（一）
-</code></pre><p>1、Lua中的数据类型主要有以下几类：<br>数字，布尔类型，字符串，关联表，nil，userdata，lua函数，C函数，THREAD类型。<br><a href="http://www.runoob.com/lua/lua-data-types.html" target="_blank" rel="noopener">http://www.runoob.com/lua/lua-data-types.html</a><br>Number:表示双精度类型的实浮点数<br>Boolean:包含两个值：false和true<br>String:字符串由一对双引号或者单引号来表示<br>Table:lua的表示其实是一个关联数组，数组的索引可以是数字或者是字符串。在lua里，table的创建是通过“构造表达式”来完成的，最简单的构造表达式是{}，用来创建一个空表。<br>Nil:只有值nil属于该类，表示一个无效值（在条件表达式中相当于false）<br>Userdata:表示任意存储在变量中的C数据结构<br>Function:由C或者lua编写的函数<br>Thread：表示执行的独立线路，用于执行协调程序</p>
+        <p>1、Lua中的数据类型主要有以下几类：<br>数字，布尔类型，字符串，关联表，nil，userdata，lua函数，C函数，THREAD类型。<br><a href="http://www.runoob.com/lua/lua-data-types.html" target="_blank" rel="noopener">http://www.runoob.com/lua/lua-data-types.html</a><br>Number:表示双精度类型的实浮点数<br>Boolean:包含两个值：false和true<br>String:字符串由一对双引号或者单引号来表示<br>Table:lua的表示其实是一个关联数组，数组的索引可以是数字或者是字符串。在lua里，table的创建是通过“构造表达式”来完成的，最简单的构造表达式是{}，用来创建一个空表。<br>Nil:只有值nil属于该类，表示一个无效值（在条件表达式中相当于false）<br>Userdata:表示任意存储在变量中的C数据结构<br>Function:由C或者lua编写的函数<br>Thread：表示执行的独立线路，用于执行协调程序</p>
 <p>2、Lua通用数据结构体<br>在lua的源码当中，创建了一个通用的数据结构来接受数据进行计算和操作，在未确定具体的数据类型时，即以此结构为参数进行操作。<br>该结构体定义在lobject.h中：<br>typedef struct lua_TValue {<br>  TValuefields;<br>} TValue;<br>其中TValuefields通过宏来定义：#define TValuefields    Value value; int tt。<br>其中tt表示lua的数据类型(lua.h)：</p>
 <p> #define LUA_TNONE        (-1)</p>
 <p> #define LUA_TNIL        0</p>
@@ -260,7 +259,7 @@
         <p><span>本文标题:</span><a href="/2018/04/20/lua中的数据类型-一/">lua中的数据类型(一)</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 何松林 的个人博客">何松林</a></p>
         <p><span>发布时间:</span>2018年04月20日 - 19时41分</p>
-        <p><span>最后更新:</span>2018年04月20日 - 19时48分</p>
+        <p><span>最后更新:</span>2018年04月20日 - 19时50分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/04/20/lua中的数据类型-一/" title="lua中的数据类型(一)">http://yoursite.com/2018/04/20/lua中的数据类型-一/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/04/20/lua中的数据类型-一/　　作者: 何松林" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
