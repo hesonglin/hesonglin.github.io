@@ -200,6 +200,79 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-lua栈的基本操作" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/04/21/lua栈的基本操作/" class="article-date">
+      <time datetime="2018-04-21T07:33:26.000Z" itemprop="datePublished">2018-04-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/21/lua栈的基本操作/">lua栈的基本操作</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>Lua虚拟机的栈操作<br>1、当我们创建一个新的lua虚拟机的时候，会创建一个数据元素为TValue的栈。我们可以通过代码来进行验证。例如我们常进行lua_pushboolean(L,b)的操作，该API是将一个bool类型的数据压入栈顶，看看实现的源码，如下（lapi.c）：<br>LUA_API void lua_pushboolean (lua_State <em>L, int b) {<br>  lua_lock(L);<br>  setbvalue(L-&gt;top, (b != 0));  /</em> ensure that true is 1 */<br>  api_incr_top(L);<br>  lua_unlock(L);<br>}<br>其中函数setbvalue的源码实现如下：</p>
+<p> #define setbvalue(obj,x) \ { TValue *i_o=(obj); i_o-&gt;value.b=(x); i_o-&gt;tt=LUA_TBOOLEAN; }<br>通过源码，我们不难发现两个点：<br>（1）、虚拟的堆栈是以TValue来存储数据的，该结构是lua内部的通用结构，可以存储任何类型的C/C++数据类型<br>（2）、lua_pushboolean函数将数据压入栈顶（L-&gt;top）<br>2、虚拟机栈的基本操作<br>具体详情可以参考源代码(lapi.c)或者<a href="http://www.runoob.com/manual/lua53doc/contents.html#index" target="_blank" rel="noopener">http://www.runoob.com/manual/lua53doc/contents.html#index</a><br>（1）、虚拟机栈的index如下(栈顶永远是-1，栈底永远是1.)：</p>
+<p>（2）、往栈里压入一个值：<br>Void lua_pushnil(lua_State <em>L)//往栈里压入一个nil<br>Void lua_pushboolean(lua_State,int bool)//往栈里压入一个数值，不等于0表示true,等于0表示false<br>Void lua_pushnumber(lua_State,lua_Number n)//压入一个数字<br>Void lua_pushinteger(lua_State,lua_Integer n)//压入int，源代码可以看出，最后传进入的值是（double）n<br>Void lua_pushunsigned(lua_State,lua_Unsigned n)<br>void lua_pushstring (lua_State </em>L, const char <em>s)<br>void lua_pushlstring (lua_State </em>L, const char <em>s, size_t len)<br>void lua_pushcclosure (lua_State </em>L, lua_CFunction fn, int n)//把一个新的 C 闭包压栈<br>void lua_pushlightuserdata (lua_State <em>L, void </em>p)<br>void lua_pushcfunction (lua_State <em>L, lua_CFunction f);<br>// #define lua_pushcfunction(L,f)  lua_pushcclosure(L,f,0)<br>const char </em>lua_pushliteral (lua_State <em>L, const char </em>s);<br>//这个宏等价于 lua_pushlstring， 区别仅在于只能在 s 是一个字面量时才能//用它。 它会自动给出字符串的长度。<br>int lua_pushthread (lua_State <em>L);<br>//把 L 表示的线程压栈。 如果这个线程是当前状态机的主线程的话，返回 1 。<br>(3)、查询栈里面的元素<br>int lua_is</em> (lua_State <em> L, int index);<br>例如：int lua_isinteger (lua_State </em>L, int index);<br>//当给定索引的值是一个整数 （其值是一个数字，且内部以整数储存）， 时，//返回 1 ，否则返回 0 。<br>(4)、获取栈内给定位置的元素值<br>xxx lua_toXXX(lua_State <em> L, int index);<br>例如const void </em>lua_topointer (lua_State <em>L, int index);<br>//把给定索引处的值转换为一般的 C 指针 (void</em>) 。 这个值可以是一个用户//对象，表 ，线程或是一个函数； 否则， lua_topointer 返回 NULL 。 不同//的对象有不同的指针。 不存在把指针再转回原有类型的方法。<br>void <em>lua_touserdata (lua_State </em>L, int index);<br>//如果给定索引处的值是一个完全用户数据， 函数返回其内存块的地址。 如果//值是一个轻量用户数据， 那么就返回它表示的指针。 否则，返回 NULL 。<br>（5）、set,get系列<br>void lua_setglobal (lua_State <em>L, const char </em>name);<br>//从堆栈上弹出一个值，并将其设为全局变量 name 的新值。<br>void lua_setuservalue (lua_State <em>L, int index);<br>//从栈上弹出一个值并将其设为给定索引处用户数据的关联值。<br>int lua_getglobal (lua_State </em>L, const char <em>name);<br>//把全局变量 name 里的值压栈，返回该值的类型。<br>int lua_getuservalue (lua_State </em>L, int index);<br>//将给定索引处的用户数据所关联的 Lua 值压栈。<br>（6）、其他一些栈操作<br>//取得栈中元素个数<br> int  lua_gettop    (lua_State <em>L);<br>//设置栈的大小为一个指定的值，而lua_settop(L,0)会把当前栈清空<br>//如果指定的index大于之前栈的大小，那么空余的空间会被nil填充<br>//如果index小于之前的栈中元素个数，则多余的元素会被丢弃<br> void lua_settop    (lua_State </em>L, int index);<br>//把栈中index所在位置的元素压入栈<br> void lua_pushvalue (lua_State <em>L, int index);<br>//移除栈中index所在位置的元素<br>void lua_remove(lua_State </em>L, int index);<br>//在栈的顶部的元素移动至index处<br>void lua_insert(lua_State <em>L, int index);<br>//从栈顶弹出一个值，并把它设置到给定的index处<br>void lua_replace(lua_State </em>L, int index);<br>//把fromidx处的元素copy一份插入到toidx，这操作不会修改fromidx处的元素<br>void lua_copy(lua_State <em>L, int fromidx, int toidx);<br>3、基本运用<br>当我们了解了这些api之后，我们能用它们来做什么呢？对于这个问题，我想是非常重要的。一般来说，宿主语言通过库的形式，加载了lua之后，便可以通过这些api来进行调用或者设计一些交互模式。<br>1）、数据的相互传递<br>Lua -&gt; C++<br>lua_State </em>L = luaL_newstate();<br>luaL_dofile(L,”test.lua”);<br>lua_getglobal(L,”str”);<br>string str = lua_tostring(L,-1);<br>cout &lt;&lt; “str = “ &lt;&lt; str &lt;&lt; endl;<br>由代码可以看见，如果test.lua里面有一个str的字符串类型的数据，将会被C++程序访问到。<br>C++ -&gt; Lua<br>C++:<br>char* strTest = “hello lua, I am C++”;<br>int test = 1;<br>lua_pushnumber(L,test);<br>lua_setglobal(L,”test”);<br>lua_pushstring(L, strTest);<br>lua_setglobal(L, “strTest”);<br>luaL_dofile(L,”test.lua”);//装载脚本文件进虚拟机，词法分析，语法分析，执行指令<br>Lua:<br>print(strTest)<br>print(test)<br>由代码可以看见，在lua的脚本里面，可以直接调用test和strTest进行访问和操作。<br>目前C++、C有专门的工具来写，即tolua++。其他宿主语言我们在用的时候，如果需要手动注册，就会用到这些api<br>2)、做游戏的时候，我们总是力争lua能解决的就不用C++等宿主语言。因此，我们可以使用一些方案，来创建一些事件机制，调用机制，注册机制。这里不方便贴出源码示例，意会了解就好。</p>
+<p>后面接着读lua的源码，中间会穿插着一些lua的基本应用。后续会有如何手动实现LUA与C++或者delphi语言数据类型进行交互的博客，用以总结。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+    
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+        <script>
+            var yiliaConfig = {
+            fancybox: true,
+            mathjax: true,
+            animate: true,
+            isHome: true,
+            isPost: false,
+            isArchive: false,
+            isTag: false,
+            isCategory: false,
+            open_in_new: false
+            }
+        </script>
+        
+
+  
     <article id="post-lua中的数据类型-一" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
