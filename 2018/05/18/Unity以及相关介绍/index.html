@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>lua中的数据类型(一) | 疯狂的木头</title>
+  <title>Unity以及相关介绍 | 疯狂的木头</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、Lua中的数据类型主要有以下几类：数字，布尔类型，字符串，关联表，nil，userdata，lua函数，C函数，THREAD类型。http://www.runoob.com/lua/lua-data-types.htmlNumber:表示双精度类型的实浮点数Boolean:包含两个值：false和trueString:字符串由一对双引号或者单引号来表示Table:lua的表示其实是一个关联数组">
+  <meta name="description" content="行文思路：Unity –&amp;gt; MONO –&amp;gt; C# –&amp;gt; .NET一、游戏引擎如何把游戏与显卡连接在一起：1：控制显卡进行绘制需要用到很多图像API，有的通过CPU进行控制，有的直接针对GPU进行控制，也有的是CPU已经绘制好，直接传递数据给GPU内存，进行显示。目前市面上主流的图形API是DirectX和OpenGL，他们提供的API最终通过CPU，传递给GUP进行运行。也有sh">
 <meta property="og:type" content="article">
-<meta property="og:title" content="lua中的数据类型(一)">
-<meta property="og:url" content="http://yoursite.com/2018/04/20/lua中的数据类型-一/index.html">
+<meta property="og:title" content="Unity以及相关介绍">
+<meta property="og:url" content="http://yoursite.com/2018/05/18/Unity以及相关介绍/index.html">
 <meta property="og:site_name" content="疯狂的木头">
-<meta property="og:description" content="1、Lua中的数据类型主要有以下几类：数字，布尔类型，字符串，关联表，nil，userdata，lua函数，C函数，THREAD类型。http://www.runoob.com/lua/lua-data-types.htmlNumber:表示双精度类型的实浮点数Boolean:包含两个值：false和trueString:字符串由一对双引号或者单引号来表示Table:lua的表示其实是一个关联数组">
+<meta property="og:description" content="行文思路：Unity –&amp;gt; MONO –&amp;gt; C# –&amp;gt; .NET一、游戏引擎如何把游戏与显卡连接在一起：1：控制显卡进行绘制需要用到很多图像API，有的通过CPU进行控制，有的直接针对GPU进行控制，也有的是CPU已经绘制好，直接传递数据给GPU内存，进行显示。目前市面上主流的图形API是DirectX和OpenGL，他们提供的API最终通过CPU，传递给GUP进行运行。也有sh">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-20T11:50:25.380Z">
+<meta property="og:updated_time" content="2018-05-18T02:03:33.626Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="lua中的数据类型(一)">
-<meta name="twitter:description" content="1、Lua中的数据类型主要有以下几类：数字，布尔类型，字符串，关联表，nil，userdata，lua函数，C函数，THREAD类型。http://www.runoob.com/lua/lua-data-types.htmlNumber:表示双精度类型的实浮点数Boolean:包含两个值：false和trueString:字符串由一对双引号或者单引号来表示Table:lua的表示其实是一个关联数组">
+<meta name="twitter:title" content="Unity以及相关介绍">
+<meta name="twitter:description" content="行文思路：Unity –&amp;gt; MONO –&amp;gt; C# –&amp;gt; .NET一、游戏引擎如何把游戏与显卡连接在一起：1：控制显卡进行绘制需要用到很多图像API，有的通过CPU进行控制，有的直接针对GPU进行控制，也有的是CPU已经绘制好，直接传递数据给GPU内存，进行显示。目前市面上主流的图形API是DirectX和OpenGL，他们提供的API最终通过CPU，传递给GUP进行运行。也有sh">
   
     <link rel="alternative" href="/atom.xml" title="疯狂的木头" type="application/atom+xml">
   
@@ -199,11 +199,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-lua中的数据类型-一" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Unity以及相关介绍" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/04/20/lua中的数据类型-一/" class="article-date">
-      <time datetime="2018-04-20T11:41:17.000Z" itemprop="datePublished">2018-04-20</time>
+      <a href="/2018/05/18/Unity以及相关介绍/" class="article-date">
+      <time datetime="2018-05-18T01:59:56.000Z" itemprop="datePublished">2018-05-18</time>
 </a>
     </div>
   
@@ -216,7 +216,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      lua中的数据类型(一)
+      Unity以及相关介绍
     </h1>
   
 
@@ -233,21 +233,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>1、Lua中的数据类型主要有以下几类：<br>数字，布尔类型，字符串，关联表，nil，userdata，lua函数，C函数，THREAD类型。<br><a href="http://www.runoob.com/lua/lua-data-types.html" target="_blank" rel="noopener">http://www.runoob.com/lua/lua-data-types.html</a><br>Number:表示双精度类型的实浮点数<br>Boolean:包含两个值：false和true<br>String:字符串由一对双引号或者单引号来表示<br>Table:lua的表示其实是一个关联数组，数组的索引可以是数字或者是字符串。在lua里，table的创建是通过“构造表达式”来完成的，最简单的构造表达式是{}，用来创建一个空表。<br>Nil:只有值nil属于该类，表示一个无效值（在条件表达式中相当于false）<br>Userdata:表示任意存储在变量中的C数据结构<br>Function:由C或者lua编写的函数<br>Thread：表示执行的独立线路，用于执行协调程序</p>
-<p>2、Lua通用数据结构体<br>在lua的源码当中，创建了一个通用的数据结构来接受数据进行计算和操作，在未确定具体的数据类型时，即以此结构为参数进行操作。<br>该结构体定义在lobject.h中：<br>typedef struct lua_TValue {<br>  TValuefields;<br>} TValue;<br>其中TValuefields通过宏来定义：#define TValuefields    Value value; int tt。<br>其中tt表示lua的数据类型(lua.h)：</p>
-<p> #define LUA_TNONE        (-1)</p>
-<p> #define LUA_TNIL        0</p>
-<p> #define LUA_TBOOLEAN        1</p>
-<p> #define LUA_TLIGHTUSERDATA    2</p>
-<p> #define LUA_TNUMBER        3</p>
-<p> #define LUA_TSTRING        4</p>
-<p> #define LUA_TTABLE        5</p>
-<p> #define LUA_TFUNCTION        6</p>
-<p> #define LUA_TUSERDATA        7</p>
-<p> #define LUA_TTHREAD        8<br>其中value通过联合体的形式进行定义，这样做的最大好处就是在表示不同数据的同时，还做到了尽可能的节省空间<br>typedef union {<br>  GCObject <em>gc;<br>  void </em>p;<br>  lua_Number n;<br>  int b;<br>} Value;(lobject.h)<br>其中void <em>p对应着LUA_TLIGHTUSERDATA和LUA_TUSERDATA<br>Lua_Number对应着LUA_TNUMBER(根据宏定义，lua_number其本质是double)<br>Int b 对应着booleanl类型。<br>GCObject </em>gc 对应着需要进行垃圾回收处理的数据类型。其中GCObject是一个联合体，将所有需要进行垃圾回收的数据类型囊括起来，其内容如下(lstate.h):<br>union GCObject {<br>  GCheader gch;<br>  union TString ts;<br>  union Udata u;<br>  union Closure cl;<br>  struct Table h;<br>  struct Proto p;<br>  struct UpVal uv;<br>  struct lua_State th;  /<em> thread </em>/<br>};<br>其中LUA_TSTRING 对应着TString，LUA_TTABLE 对应着Tabel，LUA_TFUNCTION 对应着Closure，LUA_TTHREAD 对应着lua_State.<br>其中GCheader其本质是：GCObject *next; lu_byte tt; lu_byte marked。可以看出，其本身是一个链表，将需要垃圾回收的数据加进链表中。Lua虚拟机每隔一定的时间，会检测，遍历一遍，将没有被引用的对象进行回收。</p>
-<p>在具体的代码中，TValue用于统一地表示数据，而一旦知道了具体的数据类型，就需要使用具体类型。因此，代码中有很多涉及TValue与具体类型之间的转化代码。例如(lobject.h)：</p>
-<p> #define setnilvalue(obj) ((obj)-&gt;tt=LUA_TNIL)</p>
-<p> #define setnvalue(obj,x) \<br>  { TValue *i_o=(obj); i_o-&gt;value.n=(x); i_o-&gt;tt=LUA_TNUMBER; }</p>
+        <p>行文思路：Unity –&gt; MONO –&gt; C# –&gt; .NET<br>一、游戏引擎如何把游戏与显卡连接在一起：<br>1：控制显卡进行绘制需要用到很多图像API，有的通过CPU进行控制，有的直接针对GPU进行控制，也有的是CPU已经绘制好，直接传递数据给GPU内存，进行显示。<br>目前市面上主流的图形API是DirectX和OpenGL，他们提供的API最终通过CPU，传递给GUP进行运行。<br>也有sharder这种直接对GPU进行的编程方式，编译后直接由GPU执行。<br>2：利用这些API，和方式，可以封装成各种接口，屏蔽各种操作细节，提供更加丰富的创作方案和组件。事实上，游戏引擎即建立于此。最后游戏代码通过游戏引擎提供的SDK，开发出丰富的游戏和玩法。<br>一套比较完整的游戏引擎，一般都会给游戏开发者们提供一个稳定的底层架构与完善的可视化创作工具。<br>二、Unity3D<br>  Unity3D是有Unity Technologies 公司开发的跨平台专业游戏引擎，2004年诞生于丹麦的阿姆斯特丹，2005年将总部设在了美国旧金山，并发布了Unity1.0版本。5.X之后，Unity改用年作为版本号，例如笔者所使用的Unity的版本是：Unity 2017.4.2f2。<br>  Unity3D的主要特性：<br>1、综合性的编辑<br>2、多平台的导出功能<br>3、便捷的自动资源导入<br>4、优质强大的图形动力：Unity对DirectX 和 OpenGL拥有高度优化的图形渲染管线。使<br>   用shadow map技术实现动态阴影<br>5、着色器：Unity使用ShaderLab语言编写Shaders。<br>6、物理系统：Unity内置对NVidia的PhysX Physics engine支持<br>7、脚本系统：游戏使用基于Mono的脚本（后面会详细讲解Mono以及.NET的相关内容）<br>8、资源服务器：使用The Unity Assert Server进行版本控制，使用PostgreSql作为后台<br>9、音频与视频：音效系统基于OpenAL程式库，可以播放Ogg Vorbis的压缩音效。视频<br> 播放采用Theora编码<br>10、地形编辑器<br>11、光影<br>12、互联网：Unity在多人网络连接中采用Raknet,减少网络游戏的开发工作量<br>三、Mono<br>   Mono是有Novell公司开发的，一个致力于开创.NET在linux上使用的开源工程，包含了C#语言编译器，CLR，和相关的类库。.NET只能在Windows下运行，Mono可以实现跨平台运行与Linux,Unix，MacOS等平台，这也是Unity3D能跨平台的根本原因。Unity 2017.x目前支持C#和JavaScript语言，在此之前，还支持Boo,目前已经放弃了该语言（原因是使用人数太少）。<br>Unity的脚本都会经过编译，然后变成Mono的中间运行语言，因此在运行效率上，C#与JavaScript的运行效率是完全一样的，只是语言的特性和语法不同。<br>四、C#<br>类似于Java语言，相似度达到99%，是.NET的亲身儿子，开发该语言的人，还开发的Delphi。C#使用起来并不困难，笔者曾经有一年多的时间在使用该语言进行上位机的开发，该语言非常适合于写一些基于Windows的软件，具体详细，请自行谷歌，必应了解。<br>五、.NET<br>既然是C#和MONO，就不得不提.NET 框架。.NET Framework是微软公司开发的一个采用系统虚拟机运行的编程平台，以通用语言运行库（Common Language Runtime）为基础，支持多种言，如C#，VB.NET，C++，Python等。<br>1、C#.NET的核心是CLR，是一个可由多种编程语言使用的“运行时”，其核心功能包括：内存管理，程序集加载，安全性，异常处理，线程同步等。所有的编程语言在面向CLR编译器的编译都生成一个托管模块，托管模块是一个标准的32位windows可执行的文件（PE32）,或者64位的（PE32+）文件。被CLR监管执行的称为托管，否则被称为非托管<br>2、托管模块组成包括：CLR头，IL（中间语言），元数据<br>3、程序集：CLR与程序集（assembly）一起工作，程序集是一个或者多个模块与资源文件的逻辑分组。程序集是重用、安全性已经版本控制的最小单元。程序集是自描述的（self-describing）<br>4、执行程序集代码：CLR通过JIT（just-in-time）编译中间语言成汇编，并让CPU执行<br>5、CTS(common type system)通用类型系统，指定了用一种编程语言与另外的语言进行类型的沟通。</p>
 
       
     </div>
@@ -256,13 +242,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/04/20/lua中的数据类型-一/">lua中的数据类型(一)</a></p>
+        <p><span>本文标题:</span><a href="/2018/05/18/Unity以及相关介绍/">Unity以及相关介绍</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 何松林 的个人博客">何松林</a></p>
-        <p><span>发布时间:</span>2018年04月20日 - 19时41分</p>
-        <p><span>最后更新:</span>2018年04月20日 - 19时50分</p>
+        <p><span>发布时间:</span>2018年05月18日 - 09时59分</p>
+        <p><span>最后更新:</span>2018年05月18日 - 10时03分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/04/20/lua中的数据类型-一/" title="lua中的数据类型(一)">http://yoursite.com/2018/04/20/lua中的数据类型-一/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/04/20/lua中的数据类型-一/　　作者: 何松林" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/05/18/Unity以及相关介绍/" title="Unity以及相关介绍">http://yoursite.com/2018/05/18/Unity以及相关介绍/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/05/18/Unity以及相关介绍/　　作者: 何松林" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -275,16 +261,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2018/04/21/lua栈的基本操作/">
-                    lua栈的基本操作
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2018/04/08/delphi调用lua的基本思路/">
-                    delphi调用lua的基本思路
+                <a href="/2018/04/21/lua栈的基本操作/">
+                    lua栈的基本操作
                 </a>
             </div>
         
@@ -363,15 +343,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/04/21/lua栈的基本操作/" title="上一篇: lua栈的基本操作">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2018/04/08/delphi调用lua的基本思路/" title="下一篇: delphi调用lua的基本思路">
+            <a href="/2018/04/21/lua栈的基本操作/" title="下一篇: lua栈的基本操作">
                 <i class="fa fa-angle-right"></i>
             </a>
         

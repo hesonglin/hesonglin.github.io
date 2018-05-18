@@ -200,6 +200,76 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-Unity以及相关介绍" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/05/18/Unity以及相关介绍/" class="article-date">
+      <time datetime="2018-05-18T01:59:56.000Z" itemprop="datePublished">2018-05-18</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/18/Unity以及相关介绍/">Unity以及相关介绍</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>行文思路：Unity –&gt; MONO –&gt; C# –&gt; .NET<br>一、游戏引擎如何把游戏与显卡连接在一起：<br>1：控制显卡进行绘制需要用到很多图像API，有的通过CPU进行控制，有的直接针对GPU进行控制，也有的是CPU已经绘制好，直接传递数据给GPU内存，进行显示。<br>目前市面上主流的图形API是DirectX和OpenGL，他们提供的API最终通过CPU，传递给GUP进行运行。<br>也有sharder这种直接对GPU进行的编程方式，编译后直接由GPU执行。<br>2：利用这些API，和方式，可以封装成各种接口，屏蔽各种操作细节，提供更加丰富的创作方案和组件。事实上，游戏引擎即建立于此。最后游戏代码通过游戏引擎提供的SDK，开发出丰富的游戏和玩法。<br>一套比较完整的游戏引擎，一般都会给游戏开发者们提供一个稳定的底层架构与完善的可视化创作工具。<br>二、Unity3D<br>  Unity3D是有Unity Technologies 公司开发的跨平台专业游戏引擎，2004年诞生于丹麦的阿姆斯特丹，2005年将总部设在了美国旧金山，并发布了Unity1.0版本。5.X之后，Unity改用年作为版本号，例如笔者所使用的Unity的版本是：Unity 2017.4.2f2。<br>  Unity3D的主要特性：<br>1、综合性的编辑<br>2、多平台的导出功能<br>3、便捷的自动资源导入<br>4、优质强大的图形动力：Unity对DirectX 和 OpenGL拥有高度优化的图形渲染管线。使<br>   用shadow map技术实现动态阴影<br>5、着色器：Unity使用ShaderLab语言编写Shaders。<br>6、物理系统：Unity内置对NVidia的PhysX Physics engine支持<br>7、脚本系统：游戏使用基于Mono的脚本（后面会详细讲解Mono以及.NET的相关内容）<br>8、资源服务器：使用The Unity Assert Server进行版本控制，使用PostgreSql作为后台<br>9、音频与视频：音效系统基于OpenAL程式库，可以播放Ogg Vorbis的压缩音效。视频<br> 播放采用Theora编码<br>10、地形编辑器<br>11、光影<br>12、互联网：Unity在多人网络连接中采用Raknet,减少网络游戏的开发工作量<br>三、Mono<br>   Mono是有Novell公司开发的，一个致力于开创.NET在linux上使用的开源工程，包含了C#语言编译器，CLR，和相关的类库。.NET只能在Windows下运行，Mono可以实现跨平台运行与Linux,Unix，MacOS等平台，这也是Unity3D能跨平台的根本原因。Unity 2017.x目前支持C#和JavaScript语言，在此之前，还支持Boo,目前已经放弃了该语言（原因是使用人数太少）。<br>Unity的脚本都会经过编译，然后变成Mono的中间运行语言，因此在运行效率上，C#与JavaScript的运行效率是完全一样的，只是语言的特性和语法不同。<br>四、C#<br>类似于Java语言，相似度达到99%，是.NET的亲身儿子，开发该语言的人，还开发的Delphi。C#使用起来并不困难，笔者曾经有一年多的时间在使用该语言进行上位机的开发，该语言非常适合于写一些基于Windows的软件，具体详细，请自行谷歌，必应了解。<br>五、.NET<br>既然是C#和MONO，就不得不提.NET 框架。.NET Framework是微软公司开发的一个采用系统虚拟机运行的编程平台，以通用语言运行库（Common Language Runtime）为基础，支持多种言，如C#，VB.NET，C++，Python等。<br>1、C#.NET的核心是CLR，是一个可由多种编程语言使用的“运行时”，其核心功能包括：内存管理，程序集加载，安全性，异常处理，线程同步等。所有的编程语言在面向CLR编译器的编译都生成一个托管模块，托管模块是一个标准的32位windows可执行的文件（PE32）,或者64位的（PE32+）文件。被CLR监管执行的称为托管，否则被称为非托管<br>2、托管模块组成包括：CLR头，IL（中间语言），元数据<br>3、程序集：CLR与程序集（assembly）一起工作，程序集是一个或者多个模块与资源文件的逻辑分组。程序集是重用、安全性已经版本控制的最小单元。程序集是自描述的（self-describing）<br>4、执行程序集代码：CLR通过JIT（just-in-time）编译中间语言成汇编，并让CPU执行<br>5、CTS(common type system)通用类型系统，指定了用一种编程语言与另外的语言进行类型的沟通。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+    
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+        <script>
+            var yiliaConfig = {
+            fancybox: true,
+            mathjax: true,
+            animate: true,
+            isHome: true,
+            isPost: false,
+            isArchive: false,
+            isTag: false,
+            isCategory: false,
+            open_in_new: false
+            }
+        </script>
+        
+
+  
     <article id="post-lua栈的基本操作" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
